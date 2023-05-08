@@ -20,7 +20,17 @@ func main() {
 	}
 
 	// Automatic Migration
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(
+		&models.User{},
+		&models.Store{},
+		&models.Address{},
+		&models.Category{},
+		&models.Product{},
+		&models.ProductPicture{},
+		&models.Transaction{},
+		&models.TransactionDetail{},
+		&models.ProductLog{},
+	)
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hi there!")
