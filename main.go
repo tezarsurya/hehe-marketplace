@@ -32,11 +32,18 @@ func main() {
 		&models.ProductLog{},
 	)
 
+	// Routes
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hi there!")
 	})
 
-	app.Post("/register", services.Register)
+	api := app.Group("/api")
+	api.Post("/register", services.Register)
+	api.Get("/category", services.GetAllCategories)
+	api.Get("/category/:id<int>", services.GetCategoryByID)
+	api.Post("/category", services.PostCategory)
+	api.Put("/category/:id", services.UpdateCategoryByID)
+	api.Delete("/category/:id", services.DeleteCategoryByID)
 
 	// PORT 8080
 	app.Listen(":8080")
