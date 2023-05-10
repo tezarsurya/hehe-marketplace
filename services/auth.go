@@ -9,10 +9,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-var db, _ = database.ConnectDB()
-
 // Register
 func Register(c *fiber.Ctx) error {
+	db, errDB := database.ConnectDB()
+	if errDB != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": errDB.Error(),
+		})
+	}
+
 	var newUser = models.User{}
 	var checkUser = models.User{}
 
@@ -53,7 +58,6 @@ func Register(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
 		"rows_affected": result.RowsAffected,
 	})
-
 }
 
 // Login
