@@ -1,10 +1,8 @@
 package models
 
-import "gorm.io/gorm"
-
 type Category struct {
-	gorm.Model
-	CategoryName string       `validate:"required" json:"categoryName"`
-	Products     []Product    `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
-	ProductLogs  []ProductLog `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
+	Model
+	CategoryName string       `gorm:"type:varchar(255)" validate:"required" json:"category_name"`
+	Products     []Product    `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"products,omitempty"`
+	ProductLogs  []ProductLog `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"product_logs,omitempty"`
 }

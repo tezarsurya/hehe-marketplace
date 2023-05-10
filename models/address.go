@@ -9,5 +9,5 @@ type Address struct {
 	ReceiverName   string        `validate:"required" json:"receiverName"`
 	Phone          string        `validate:"required" json:"phone"`
 	AddressDetails string        `json:"addressDetails"`
-	Transactions   []Transaction `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
+	Transactions   []Transaction `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }

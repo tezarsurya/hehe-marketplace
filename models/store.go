@@ -7,6 +7,6 @@ type Store struct {
 	UserID      uint
 	StoreName   string       `validate:"required" json:"storeName"`
 	StoreURL    string       `validate:"required" json:"storeUrl"`
-	Products    []Product    `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
-	ProductLogs []ProductLog `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
+	Products    []Product    `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	ProductLogs []ProductLog `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }

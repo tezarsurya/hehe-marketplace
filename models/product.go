@@ -12,6 +12,6 @@ type Product struct {
 	CustomerPrice   string
 	Available       int
 	Description     string           `gorm:"type:text"`
-	ProductPictures []ProductPicture `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
-	ProductLogs     []ProductLog     `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
+	ProductPictures []ProductPicture `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	ProductLogs     []ProductLog     `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }

@@ -7,5 +7,5 @@ type TransactionDetail struct {
 	StoreID     uint
 	Quantity    int
 	TotalPrice  int
-	ProductLogs []ProductLog `gorm:"constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
+	ProductLogs []ProductLog `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
